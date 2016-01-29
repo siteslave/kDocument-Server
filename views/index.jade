@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div(layout="row", layout-xs="column")
+    div(flex="30")
+      md-card(flex, layout-padding)
+        md-content
+
+    div(flex="70")
+      md-card(flex)
+        ui-view

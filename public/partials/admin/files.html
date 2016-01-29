@@ -1,0 +1,260 @@
+<div layout="row">
+  <md-card flex="40">
+    <md-card-header>
+      <md-card-avatar>
+        <md-icon class="material-icons">search</md-icon>
+      </md-card-avatar>
+      <md-card-header-text>
+        <span class="md-title">Search</span>
+        <span class="md-subhead">ค้นหาบริการ</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+
+      <div layout-gt-xs="row">
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>ระบุ HN</label>
+          <input ng-model="query" type="text">
+        </md-input-container>
+        <md-button class="md-icon-button" aria-label="Search" ng-click="doSearch()">
+          <md-icon class="material-icons">search</md-icon>
+        </md-button>
+      </div>
+
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="OPD">
+          <md-content class="md-padding">
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>วันที่</th>
+                  <th md-column>เวลา</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!opdServices">
+                  <td md-cell colspan="3">ไม่พบประวัติ</td>
+                </tr>
+                <tr md-row ng-repeat="s in opdServices" ng-if="opdServices.length">
+                  <td md-cell>{{ s.date_serv_thai }}</td>
+                  <td md-cell>{{ s.time_serv }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="getDocument('opd', s.date_serv,  s.vn)">
+                      <md-icon class="material-icons">search</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="IPD">
+          <md-content class="md-padding">
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>วันที่</th>
+                  <th md-column>เวลา</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!ipdServices">
+                  <td md-cell colspan="3">ไม่พบประวัติ</td>
+                </tr>
+                <tr md-row ng-repeat="s in ipdServices" ng-if="ipdServices.length">
+                  <td md-cell>{{ s.date_serv_thai }}</td>
+                  <td md-cell>{{ s.time_serv }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="getDocument('ipd', s.date_serv, s.an)">
+                      <md-icon class="material-icons">search</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        </md-tabs>
+    </md-card-content>
+  </md-card>
+  <md-card flex="60">
+    <md-card-header>
+      <md-card-avatar>
+        <md-icon class="material-icons">folder</md-icon>
+      </md-card-avatar>
+      <md-card-header-text>
+        <span class="md-title">Files Management</span>
+        <span class="md-subhead">เพิ่ม/ลบ ไฟล์</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+      <md-tabs md-dynamic-height md-boder-bottom>
+        <md-tab label="CHART">
+          <md-content>
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>#</th>
+                  <th md-column>ชื่อไฟล์</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!data.files.chart.length">
+                  <td md-cell colspan="3">ไม่พบเอกสาร</td>
+                </tr>
+                <tr md-row ng-repeat="f in data.files.chart" ng-if="data.files.chart.length">
+                  <td md-cell>{{ $index+1 }}</td>
+                  <td md-cell>{{ f }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="preview($event, 'chart', f)">
+                      <md-icon class="material-icons">visibility</md-icon>
+                    </md-button>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="remove($event, 'chart', f)">
+                      <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="X-Ray">
+          <md-content>
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>#</th>
+                  <th md-column>ชื่อไฟล์</th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!data.files.xray.length">
+                  <td md-cell colspan="3">ไม่พบเอกสาร</td>
+                </tr>
+                <tr md-row ng-repeat="f in data.files.xray" ng-if="data.files.xray.length">
+                  <td md-cell>{{ $index+1 }}</td>
+                  <td md-cell>{{ f }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="preview($event, 'xray', f)">
+                      <md-icon class="material-icons">visibility</md-icon>
+                    </md-button>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="remove($event, 'xray', f)">
+                      <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="EKG">
+          <md-content>
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>#</th>
+                  <th md-column>ชื่อไฟล์</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!data.files.ekg.length">
+                  <td md-cell colspan="3">ไม่พบเอกสาร</td>
+                </tr>
+                <tr md-row ng-repeat="f in data.files.ekg" ng-if="data.files.ekg.length">
+                  <td md-cell>{{ $index+1 }}</td>
+                  <td md-cell>{{ f }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="preview($event, 'ekg', f)">
+                      <md-icon class="material-icons">visibility</md-icon>
+                    </md-button>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="remove($event, 'ekg', f)">
+                      <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="LAB">
+          <md-content>
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>#</th>
+                  <th md-column>ชื่อไฟล์</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!data.files.lab.length">
+                  <td md-cell colspan="3">ไม่พบเอกสาร</td>
+                </tr>
+                <tr md-row ng-repeat="f in data.files.lab" ng-if="data.files.lab.length">
+                  <td md-cell>{{ $index+1 }}</td>
+                  <td md-cell>{{ f }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="preview($event, 'lab', f)">
+                      <md-icon class="material-icons">visibility</md-icon>
+                    </md-button>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="remove($event, 'lab', f)">
+                      <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="เอกสารอื่นๆ">
+          <md-content>
+            <md-table-container>
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>#</th>
+                  <th md-column>ชื่อไฟล์</th>
+                  <th md-column></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-if="!data.files.other.length">
+                  <td md-cell colspan="3">ไม่พบเอกสาร</td>
+                </tr>
+                <tr md-row ng-repeat="f in data.files.other" ng-if="data.files.other.length">
+                  <td md-cell>{{ $index+1 }}</td>
+                  <td md-cell>{{ f }}</td>
+                  <td md-cell>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="preview($event, 'other', f)">
+                      <md-icon class="material-icons">visibility</md-icon>
+                    </md-button>
+                    <md-button aria-label="Prev" class="md-icon-button" ng-click="remove($event, 'other', f)">
+                      <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-card-content>
+  </md-card>
+</div>

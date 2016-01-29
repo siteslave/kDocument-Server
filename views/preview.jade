@@ -1,0 +1,70 @@
+extends PreviewLayout
+
+block content
+  div(layout="row", layout-xs="column")
+    div(flex="30", ng-controller="NavBarCtrl")
+      input(type="hidden", value="#{hn}")#hn
+      //if patient
+      md-card(flex, layout-padding, ng-if="patient.hn")
+        md-card-header
+          md-card-avatar
+            md-icon.material-icons account_circle
+          md-card-header-text
+            span.md-title {{patient.fullname}}
+            br
+            span.md-subhead HN: {{patient.hn}}
+      //else
+      md-card(flex, layout-padding, ng-if="!patient.hn")
+        md-card-content(layout="row")
+          md-input-container
+            input(type="text", placeholder="ระบุ HN", ng-model="query", style="width: 250px;")
+          md-button.md-icon-button
+            md-icon.material-icons search
+      md-card(flex, layout-padding)
+        md-content(style="height: 680px;")
+          md-tabs(md-dynamic-height, md-boder-bottom)
+            md-tab(label="ผู้ป่วยนอก (OPD)")
+              md-content
+                md-table-container
+                  table(md-table)
+                    thead(md-head)
+                      tr(md-row)
+                        th(md-column) วันที่
+                        th(md-column) เวลา
+                        th(md-column)
+                    tbody(md-body)
+                      //if services.opd
+                      //  each s in services.opd
+                      tr(md-row, ng-if="opdServices", ng-repeat="s in opdServices")
+                        td(md-cell) {{s.date_serv_thai}}
+                        td(md-cell) {{s.time_serv}}
+                        td(md-cell)
+                          md-button.md-icon-button(aria-label="Prev", ng-click="getDocument('opd', s.vn, s.date_serv)")
+                            md-icon.material-icons search
+                      //else
+                      tr(md-row, ng-if="!opdServices")
+                        td(md-cell, colspan="3") ไม่พบรายการ
+
+            md-tab(label="ผู้ป่วยใน (IPD)")
+              md-content
+                md-table-container
+                  table(md-table)
+                    thead(md-head)
+                      tr(md-row)
+                        th(md-column) AN
+                        th(md-column) วันที่
+                        th(md-column) #
+                    tbody(md-body)
+                      tr(md-row, ng-if="ipdServices", ng-repeat="s in ipdServices")
+                        td(md-cell) {{s.an}}
+                        td(md-cell) {{s.date_serv_thai}}
+                        td(md-cell)
+                          md-button.md-icon-button(aria-label="Prev", ng-click="getDocument('ipd', s.an, s.date_serv)")
+                            md-icon.material-icons search
+                      //else
+                      tr(md-row, ng-if="!ipdServices")
+                        td(md-cell, colspan="3") ไม่พบรายการ
+
+
+    div(flex="70")
+      ui-view

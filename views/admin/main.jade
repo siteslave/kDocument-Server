@@ -1,0 +1,34 @@
+extends ../AdminLayout
+
+block scripts
+
+  script(src="/javascripts/admin/App.js")
+  script(src="/javascripts/admin/MainCtrl.js")
+  script(src="/javascripts/admin/LeftNavCtrl.js")
+  script(src="/javascripts/admin/UsersCtrl.js")
+  script(src="/javascripts/admin/UsersService.js")
+  script(src="/javascripts/admin/UsersAddCtrl.js")
+  script(src="/javascripts/admin/UsersEditCtrl.js")
+  script(src="/javascripts/admin/FilesCtrl.js")
+  script(src="/javascripts/admin/FileService.js")
+  script(src="/javascripts/PreviewService.js")
+  script(src="/javascripts/DocumentService.js")
+
+block content
+
+  section(layout="row", flex, ng-controller="LeftNavCtrl")
+    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left", md-is-locked-open="true")
+      md-toolbar.md-theme-indogo
+        h1.md-toolbar-tools Tools
+      md-content(style="height: 680px;")
+        md-menu-content
+          md-menu-item
+            md-button(ng-click="go('users')")
+              md-icon(md-menu-align-target).material-icons group
+              | จัดการข้อมูลผู้ใช้งาน
+          md-menu-item
+            md-button(ng-click="go('files')")
+              md-icon(md-menu-align-target).material-icons folder
+              | จัดการไฟล์ (เพิ่ม/ลบ)
+    div(flex)
+      ui-view

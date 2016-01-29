@@ -1,0 +1,35 @@
+doctype html
+html(ng-app="app")
+  head
+    meta(http-equiv="x-ua-compatible", content="ie=10")
+
+    title= title
+    link(rel='stylesheet', href='/vendor/angular-material/angular-material.min.css')
+    link(rel='stylesheet', href='/vendor/angular-material-data-table/dist/md-data-table.min.css')
+    link(rel='stylesheet', href='/cssfont/material-icons.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(src="/vendor/angular/angular.js")
+    script(src="/vendor/angular-aria/angular-aria.min.js")
+    script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src="/vendor/angular-messages/angular-messages.min.js")
+    script(src="/vendor/angular-material/angular-material.min.js")
+    script(src="/vendor/angular-material-data-table/dist/md-data-table.min.js")
+    script(src="/vendor/angular-ui-router/release/angular-ui-router.min.js")
+
+    block scripts
+
+
+  body
+
+    div(ng-controller="MainCtrl", layout="column")#popupContainer
+      md-toolbar.md-theme-indogo
+        div.md-toolbar-tools
+          md-button.md-icon-button(aria-label="Home", ng-click="toggleLeft()")
+            md-icon.material-icons menu
+          h2 Document Management System (Admin)
+          span(flex)
+          md-button.md-icon-button(arial-label="Logout", ng-click="logout()")
+            md-icon.material-icons exit_to_app
+    block content
+

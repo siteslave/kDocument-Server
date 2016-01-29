@@ -1,0 +1,162 @@
+<md-card flex>
+  <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <md-button aria-label="Back" class="md-icon-button">
+        <md-icon class="material-icons">home</md-icon>
+      </md-button>
+      <h2 class="md-flex">Home</h2>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+
+    <md-subheader class="md-no-sticky">List of document in this service</md-subheader>
+
+    <md-tabs md-dynamic-height md-boder-bottom>
+      <md-tab label="CHART">
+        <md-content>
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+              <tr md-row>
+                <th md-column>#</th>
+                <th md-column>ชื่อไฟล์</th>
+                <th md-column></th>
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row ng-if="!data.files.chart.length">
+                <td md-cell colspan="3">ไม่พบเอกสาร</td>
+              </tr>
+              <tr md-row ng-repeat="f in data.files.chart" ng-if="data.files.chart.length">
+                <td md-cell>{{ $index+1 }}</td>
+                <td md-cell>{{ f }}</td>
+                <td md-cell>
+                  <md-button aria-label="Prev" class="md-icon-button" ng-click="doPreview('chart', f)">
+                    <md-icon class="material-icons">visibility</md-icon>
+                  </md-button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="X-Ray">
+        <md-content>
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+              <tr md-row>
+                <th md-column>#</th>
+                <th md-column>ชื่อไฟล์</th>
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row ng-if="!data.files.xray.length">
+                <td md-cell colspan="3">ไม่พบเอกสาร</td>
+              </tr>
+              <tr md-row ng-repeat="f in data.files.xray" ng-if="data.files.xray.length">
+                <td md-cell>{{ $index+1 }}</td>
+                <td md-cell>{{ f }}</td>
+                <td md-cell>
+                  <md-button aria-label="Prev" class="md-icon-button" ng-click="doPreview('xray', f)">
+                    <md-icon class="material-icons">visibility</md-icon>
+                  </md-button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="EKG">
+        <md-content>
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+              <tr md-row>
+                <th md-column>#</th>
+                <th md-column>ชื่อไฟล์</th>
+                <th md-column></th>
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row ng-if="!data.files.ekg.length">
+                <td md-cell colspan="3">ไม่พบเอกสาร</td>
+              </tr>
+              <tr md-row ng-repeat="f in data.files.ekg" ng-if="data.files.ekg.length">
+                <td md-cell>{{ $index+1 }}</td>
+                <td md-cell>{{ f }}</td>
+                <td md-cell>
+                  <md-button aria-label="Prev" class="md-icon-button" ng-click="doPreview('ekg', f)">
+                    <md-icon class="material-icons">visibility</md-icon>
+                  </md-button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="LAB">
+        <md-content>
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+              <tr md-row>
+                <th md-column>#</th>
+                <th md-column>ชื่อไฟล์</th>
+                <th md-column></th>
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row ng-if="!data.files.lab.length">
+                <td md-cell colspan="3">ไม่พบเอกสาร</td>
+              </tr>
+              <tr md-row ng-repeat="f in data.files.lab" ng-if="data.files.lab.length">
+                <td md-cell>{{ $index+1 }}</td>
+                <td md-cell>{{ f }}</td>
+                <td md-cell>
+                  <md-button aria-label="Prev" class="md-icon-button" ng-click="doPreview('lab', f)">
+                    <md-icon class="material-icons">visibility</md-icon>
+                  </md-button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-content>
+      </md-tab>
+      <md-tab label="เอกสารอื่นๆ">
+        <md-content>
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+              <tr md-row>
+                <th md-column>#</th>
+                <th md-column>ชื่อไฟล์</th>
+                <th md-column></th>
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row ng-if="!data.files.other.length">
+                <td md-cell colspan="3">ไม่พบเอกสาร</td>
+              </tr>
+              <tr md-row ng-repeat="f in data.files.other" ng-if="data.files.other.length">
+                <td md-cell>{{ $index+1 }}</td>
+                <td md-cell>{{ f }}</td>
+                <td md-cell>
+                  <md-button aria-label="Prev" class="md-icon-button" ng-click="doPreview('other', f)">
+                    <md-icon class="material-icons">visibility</md-icon>
+                  </md-button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+  </md-content>
+</md-card>

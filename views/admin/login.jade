@@ -1,0 +1,26 @@
+extends ../LoginLayout
+
+block scripts
+  script(src="/javascripts/admin/LoginApp.js")
+
+block content
+  md-card(style="width: 480px;", ng-controller="LoginCtrl")
+    md-card-header
+      md-card-avatar
+        md-icon.material-icons group
+      md-card-header-text
+        span.md-title Login
+        span.md-subhead กรุณาล๊อกอินเพื่อเข้าสู่ระบบ
+    md-card-content
+      div(layout-gt-sm="row")
+        md-input-container.md-block.md-icon-float(flex-gt-sm)
+          label Username
+          md-icon.material-icons account_circle
+          input(ng-model="username", type="text")
+        md-input-container.md-block.md-icon-float(flex-gt-sm)
+          label Password
+          md-icon.material-icons vpn_key
+          input(ng-model="password", type="password")
+      div(layout-gt-sm="row")
+        //span(flex)
+        md-button.md-raised.md-primary(ng-click="doLogin()") Login

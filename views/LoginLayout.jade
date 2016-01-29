@@ -1,0 +1,28 @@
+doctype html
+html(ng-app="app")
+  head
+    meta(http-equiv="x-ua-compatible", content="ie=10")
+
+    title= title
+    link(rel='stylesheet', href='/vendor/angular-material/angular-material.min.css')
+    link(rel='stylesheet', href='/cssfont/material-icons.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(src="/vendor/angular/angular.js")
+    script(src="/vendor/angular-aria/angular-aria.min.js")
+    script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src="/vendor/angular-messages/angular-messages.min.js")
+    script(src="/vendor/angular-material/angular-material.min.js")
+
+    block scripts
+
+  body
+
+    div
+      md-toolbar.md-theme-indogo
+        div.md-toolbar-tools
+          md-button.md-icon-button(aria-label="Home")
+            md-icon.material-icons menu
+          h2 Document Management System (Admin)
+    block content
+

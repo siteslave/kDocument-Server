@@ -1,0 +1,35 @@
+<md-toolbar class="md-primary">
+  <div class="md-toolbar-tools">
+    <md-button aria-label="Back" class="md-icon-button" ng-click="goHome()">
+      <md-icon class="material-icons">chevron_left</md-icon>
+    </md-button><h2 class="md-flex">Preview</h2>
+    <!--<span flex></span>-->
+    <!--<md-button aria-label="Prev" ng-click="goPrevious()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">chevron_left</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Next" ng-click="goNext()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">chevron_right</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Zoom In" ng-click="zoomIn()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">zoom_in</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Zoom Out" ng-click="zoomOut()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">zoom_out</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Fit to page" ng-click="fit()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">settings_overscan</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Rotate" ng-click="rotate()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">screen_rotation</md-icon>-->
+    <!--</md-button>-->
+    <!--<md-button aria-label="Print" ng-click="print()" class="md-icon-button">-->
+      <!--<md-icon class="material-icons">local_printshop</md-icon>-->
+    <!--</md-button>-->
+
+    <!--<h2 class="md-flex">{{pageNum}} / {{pageCount}}</h2>-->
+  </div>
+</md-toolbar>
+<md-content>
+  <div ng-pdf-object url="{{file}}" height="680px"></div>
+  <!--<canvas id="pdf-canvas"></canvas>-->
+</md-content>

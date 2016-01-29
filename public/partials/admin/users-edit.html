@@ -1,0 +1,42 @@
+<md-card flex>
+  <md-card-header>
+    <md-card-avatar>
+      <md-icon class="material-icons">person_add</md-icon>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">Edit users</span>
+      <span class="md-subhead">แก้ไขข้อมูลผู้ใช้งาน</span>
+    </md-card-header-text>
+  </md-card-header>
+
+  <md-card-content>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>ชื่อ-สกุล</label>
+        <input ng-model="user.fullname">
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input ng-model="user.username" type="text" ng-disabled="true">
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input ng-model="user.password" type="password">
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-checkbox ng-model="user.isAdmin" aria-label="Is Admin">
+        ผู้ดูแลระบบ
+      </md-checkbox>
+      <md-checkbox ng-model="user.isActive" aria-label="Is Active">
+        เปิดใช้งาน
+      </md-checkbox>
+      <span flex></span>
+      <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+      <md-button class="md-raised md-warn" ng-click="go('users')">Cancel</md-button>
+    </div>
+  </md-card-content>
+
+</md-card>
